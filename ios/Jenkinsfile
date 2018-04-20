@@ -1,11 +1,10 @@
 #!groovy
-@Library("NsPipelineLib") _
 env.gitToken = "0641455876e8e575a63fc26a975424ae08c32297"
 
 import groovy.json.JsonSlurperClassic
 node {
   echo env.BUILD_NUMBER
-  env.PATH = "/Users/dog-hero-ci/.rbenv/bin:/Users/dog-hero-ci/.fastlane/bin:/Users/dog-hero-ci/.rbenv/shims:/Users/dog-hero-ci/.rbenv/bin:/Users/dog-hero-ci/.fastlane/bin:/Users/dog-hero-ci/.rbenv/shims:/Users/dog-hero-ci/.rvm/gems/ruby-2.4.0/bin:/Users/ios_slave/.rvm/gems/ruby-2.4.0@global/bin:/Users/dog-hero-ci/.rvm/rubies/ruby-2.4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/dog-hero-ci/.rvm/bin:/Users/dog-hero-ci/.rvm/bin"
+  env.PATH = "/Users/admin/.rvm/gems/ruby-2.4.1/bin:/Users/admin/.rvm/gems/ruby-2.4.1@global/bin:/Users/admin/.rvm/rubies/ruby-2.4.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/admin/.rvm/bin"
 
   currentBuild.result = "SUCCESS"
 
