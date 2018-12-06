@@ -1,5 +1,6 @@
 #!groovy
 node() {
+  env.PATH = "/Users/admin/.rvm/gems/ruby-2.4.1/bin:/Users/admin/.rvm/gems/ruby-2.4.1@global/bin:/Users/admin/.rvm/rubies/ruby-2.4.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/admin/.rvm/bin"
     def PR_APPROVED = "approved"
     def LB_QA = "QA"
     def SYNCHRONIZE = "synchronize"
