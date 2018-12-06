@@ -7,7 +7,6 @@ node() {
     def OPENED = "opened"
     def TRUE = "true"
     def FALSE = "false"
-    echo 'build ok'
     //get the name of the repository to know the job that needs to be executed
     repoName = sh(
             script: "echo '${env.payload}' | jq '.repository.name' | sed -e 's/\"//g'",
