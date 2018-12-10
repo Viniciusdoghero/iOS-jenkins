@@ -1,5 +1,5 @@
 #!groovy
-env.gitToken = "0cce0beac62fe27550c4cb697e3cd121d0eac4f2"
+env.gitToken = "0407d5b5693b40bb39b8e0db51ac778111356139"
 
 import groovy.json.JsonSlurperClassic
 node {
