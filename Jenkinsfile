@@ -2,7 +2,6 @@
 env.gitToken = "0407d5b5693b40bb39b8e0db51ac778111356139"
 
 import groovy.json.JsonSlurperClassic
-node {
   echo env.BUILD_NUMBER
   env.PATH = "/Users/admin/.rvm/gems/ruby-2.4.1/bin:/Users/admin/.rvm/gems/ruby-2.4.1@global/bin:/Users/admin/.rvm/rubies/ruby-2.4.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/admin/.rvm/bin"
 
@@ -20,7 +19,7 @@ node {
     if (env.lane == "appstore") {
       try {
         deployToAppStore()
-      } catch (e){
+      } catch (e) {
         currentBuild.result = "FAILURE"
         return
       }
@@ -177,4 +176,3 @@ node {
             )
       return coverage
     }
-  }
