@@ -16,8 +16,6 @@ node() {
     echo "+++ statusUrl: ${env.statusUrl}"
     echo "+++ commentUrl: ${env.commentUrl}"
 
-
-
     if (env.lane == "appstore") {
       try {
         deployToAppStore()
@@ -77,7 +75,7 @@ node() {
 
   def cocoapods() {
     stage('cocoapods') {
-      sh 'fastlane install_intelligent_carthage'
+      sh 'fastlane install_intelligent_dependencies'
     }
   }
 
