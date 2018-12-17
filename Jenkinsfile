@@ -47,7 +47,6 @@ node() {
   }
 
   def runUnitTests(lane, branch) {
-    bundleInstall()
     checkout(lane, branch)
     cleanEnvironment()
     cocoapods()
