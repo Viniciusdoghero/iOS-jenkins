@@ -88,7 +88,7 @@ node() {
   }
 
   def prepareEnvironment() {
-      KEYCHAIN="/Users/admin /Library/Keychains/jenkins.keychain-db"
+      KEYCHAIN="/Users/admin/Library/Keychains/jenkins.keychain-db"
       sh "security -v list-keychains -s ${KEYCHAIN}"
       sh "security -v unlock-keychain -p admin-ci ${KEYCHAIN}"
       sh "security set-keychain-settings -t 3600 -l ${KEYCHAIN}"
