@@ -1,8 +1,8 @@
 #!groovy
-node() {
 import groovy.json.JsonSlurperClassic
 import hudson.model.*
 
+node() {
   env.gitToken = "0407d5b5693b40bb39b8e0db51ac778111356139"
   echo env.BUILD_NUMBER
   env.PATH = "/Users/admin/.rvm/xgems/ruby-2.4.1/bin:/Users/admin/.rvm/gems/ruby-2.4.1@global/bin:/Users/admin/.rvm/rubies/ruby-2.4.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/admin/.rvm/bin"
