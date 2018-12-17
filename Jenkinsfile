@@ -108,7 +108,7 @@ node() {
       if (lane == "appstore") {
         branchToCheckout = "origin/master"
       } else {
-        branchToCheckout = "origin/feature/${branch}"
+        branchToCheckout = "origin/${branch}"
       }
       checkout([
               $class                           : 'GitSCM',
