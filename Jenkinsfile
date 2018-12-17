@@ -1,4 +1,5 @@
 #!groovy
+node() {
 import groovy.json.JsonSlurperClassic
 import hudson.model.*
 
@@ -45,6 +46,7 @@ import hudson.model.*
     }
 
     buildFinal()
+  }
 
   def runUnitTests(lane, branch) {
     checkout(lane, branch)
