@@ -47,11 +47,16 @@ node() {
   }
 
   def runUnitTests(lane, branch) {
+    bundleInstall()
     checkout(lane, branch)
     cleanEnvironment()
     cocoapods()
     // checkStyle()
     unitTests()
+  }
+
+  def bundleInstall() {
+    sh 'bundle install'
   }
 
   def cleanEnvironment() {
