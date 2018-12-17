@@ -124,18 +124,18 @@ node() {
     }
   }
 
-  def changePrStatus(state, message) {
-      if (env.statusUrl.length() > 0) {
-          prStatus([
-                  authToken  : env.gitToken,
-                  statusesUrl: env.statusUrl,
-                  prStatus   : state,
-                  description: message,
-                  prContext  : "Ci/Jenkins",
-                  targetUrl  : env.BUILD_URL
-          ])
-      }
-  }
+  // def changePrStatus(state, message) {
+  //     if (env.statusUrl.length() > 0) {
+  //         prStatus([
+  //                 authToken  : env.gitToken,
+  //                 statusesUrl: env.statusUrl,
+  //                 prStatus   : state,
+  //                 description: message,
+  //                 prContext  : "Ci/Jenkins",
+  //                 targetUrl  : env.BUILD_URL
+  //         ])
+  //     }
+  // }
 
   def commentGithub(commentMessage) {
       if (env.commentUrl.length() > 0) {
@@ -148,16 +148,16 @@ node() {
   }
 
   def buildStarted() {
-    changePrStatus("pending", "In progress...")
+    // changePrStatus("pending", "In progress...")
     //updateStatus("pending", "InProgress...")
   }
 
   def buildSuccess() {
-    changePrStatus("success", "The build succeeded!")
+    // changePrStatus("success", "The build succeeded!")
   }
 
   def buildError() {
-    changePrStatus("failure", "Build failed")
+    // changePrStatus("failure", "Build failed")
   }
 
   def buildFinal() {
