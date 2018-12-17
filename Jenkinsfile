@@ -117,7 +117,7 @@ node() {
               extensions                       : [],
               submoduleCfg                     : [],
               userRemoteConfigs                : [
-                      [credentialsId: 'ios-ci',
+                      [credentialsId: '3ced5ccb-d52e-4966-90f0-b37c20da6a3d',
                        url          : 'https://github.com/doghero/lassie.git']
               ]
       ])
