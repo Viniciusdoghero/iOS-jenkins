@@ -88,18 +88,18 @@ node() {
   }
 
   def prepareEnvironment() {
-      KEYCHAIN="/Users/ios_slave/Library/Keychains/login.keychain-db"
+      KEYCHAIN="/Users/admin /Library/Keychains/jenkins.keychain-db"
       sh "security -v list-keychains -s ${KEYCHAIN}"
-      sh "security -v unlock-keychain -p mobile-ci ${KEYCHAIN}"
+      sh "security -v unlock-keychain -p admin-ci ${KEYCHAIN}"
       sh "security set-keychain-settings -t 3600 -l ${KEYCHAIN}"
 
       sh "xcrun simctl erase all"
   }
 
   def cleanFolders() {
-      sh "rm -rf /Users/ios_slave/workspace/ios-n-apps/bluepill/"
-      sh "rm -rf /Users/ios_slave/workspace/ios-n-apps/output/"
-      sh "rm -rf /Users/ios_slave/workspace/ios-n-apps/derivedData/"
+      sh "rm -rf /Users/admin/workspace/lassie/jenkins_build/"
+      sh "rm -rf /Users/admin/workspace/lassie/output/"
+      sh "rm -rf /Users/admin/workspace/lassie/derivedData/"
   }
 
   def checkout(lane, branch) {
