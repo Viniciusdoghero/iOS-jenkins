@@ -96,13 +96,14 @@ node() {
       sh "security -v unlock-keychain -p admin-ci ${KEYCHAIN}"
       sh "security set-keychain-settings -t 3600 -l ${KEYCHAIN}"
 
+      sh "xcrun simctl shutdown all"
       sh "xcrun simctl erase all"
   }
 
   def cleanFolders() {
-      sh "rm -rf /Users/admin/workspace/lassie/jenkins_build/"
-      sh "rm -rf /Users/admin/workspace/lassie/output/"
-      sh "rm -rf /Users/admin/workspace/lassie/derivedData/"
+      sh "rm -rf /Users/admin/.jenkins/workspace/lassie/jenkins_build/"
+      sh "rm -rf /Users/admin/.jenkins/workspace/lassie/output/"
+      sh "rm -rf /Users/admin/.jenkins/workspace/lassie/DerivedData/"
   }
 
   def checkout(lane, branch) {
