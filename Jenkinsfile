@@ -3,7 +3,6 @@ import groovy.json.JsonSlurperClassic
 import hudson.model.*
 
 node() {
-  env.gitToken = "8fc495fc4f7ab50bdee7a45a371338a5a1f8866c"
   echo env.BUILD_NUMBER
   env.PATH = "/Users/admin/.rvm/xgems/ruby-2.4.1/bin:/Users/admin/.rvm/gems/ruby-2.4.1@global/bin:/Users/admin/.rvm/rubies/ruby-2.4.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/admin/.rvm/bin"
   sh "source ~/.bash_profile"
@@ -15,6 +14,7 @@ node() {
     echo "+++lane: ${env.lane}"
     echo "+++ statusUrl: ${env.statusUrl}"
     echo "+++ commentUrl: ${env.commentUrl}"
+    echo "+++ gitToken: ${env.GIT_TOKEN}"
 
     if (env.lane == "appstore") {
       try {
@@ -152,12 +152,12 @@ node() {
   // }
 
   def updateStatus(gitStatus, message) {
-    sh "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: token 8fc495fc4f7ab50bdee7a45a371338a5a1f8866c\" ${env.statusUrl} -d \"{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_URL}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}\""
+    sh "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: token ${env.GIT_TOKEN}\" ${env.statusUrl} -d \"{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_URL}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}\""
   }
 
   def commentGithub(message) {
       sh "curl -X POST -H 'Content-Type: application/json' " +
-              "-H 'Authorization: token 8fc495fc4f7ab50bdee7a45a371338a5a1f8866c' ${env.commentUrl} " +
+              "-H 'Authorization: token ${env.GIT_TOKEN}' ${env.commentUrl} " +
               "-d '{\"body\": \"${message}\"}'"
   }
 
