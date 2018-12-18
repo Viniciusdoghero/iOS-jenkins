@@ -165,15 +165,15 @@ node() {
     // updateStatus("failure", "Build failed")
   }
 
-  def updateStatus(gitStatus, message) {
-    sh "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139\" ${env.statusUrl} -d \"{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_URL}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}\""
-  }
-
-  def commentGithub(message) {
-      sh "curl -X POST -H 'Content-Type: application/json' " +
-              "-H 'Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139' ${env.commentUrl} " +
-              "-d '{\"body\": \"${message}\"}'"
-  }
+  // def updateStatus(gitStatus, message) {
+  //   sh "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139\" ${env.statusUrl} -d \"{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_URL}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}\""
+  // }
+  //
+  // def commentGithub(message) {
+  //     sh "curl -X POST -H 'Content-Type: application/json' " +
+  //             "-H 'Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139' ${env.commentUrl} " +
+  //             "-d '{\"body\": \"${message}\"}'"
+  // }
 
   def buildFinal() {
     echo currentBuild.result
