@@ -140,28 +140,39 @@ node() {
   //         ])
   //     }
   // }
-
-  def commentGithub(commentMessage) {
-      if (env.commentUrl.length() > 0) {
-          gitComment([
-                  authToken : env.gitToken,
-                  commentUrl: env.commentUrl,
-                  message   : commentMessage
-          ])
-      }
-  }
+  // def commentGithub(commentMessage) {
+  //     if (env.commentUrl.length() > 0) {
+  //         gitComment([
+  //                 authToken : env.gitToken,
+  //                 commentUrl: env.commentUrl,
+  //                 message   : commentMessage
+  //         ])
+  //     }
+  // }
 
   def buildStarted() {
     // changePrStatus("pending", "In progress...")
-    //updateStatus("pending", "InProgress...")
+    updateStatus("pending", "InProgress...")
   }
 
   def buildSuccess() {
     // changePrStatus("success", "The build succeeded!")
+    updateStatus("success", "Build passed")
   }
 
   def buildError() {
     // changePrStatus("failure", "Build failed")
+    updateStatus("failure", "Build failed")
+  }
+
+  def updateStatus(gitStatus, message) {
+    sh "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139\" ${env.statusUrl} -d \"{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_URL}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}\""
+  }
+
+  def commentGithub(message) {
+      sh "curl -X POST -H 'Content-Type: application/json' " +
+              "-H 'Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139' ${env.commentUrl} " +
+              "-d '{\"body\": \"${message}\"}'"
   }
 
   def buildFinal() {
@@ -178,7 +189,7 @@ node() {
 
   def getCoverage() {
     coverage = sh(
-          script: "cat '/Users/ios_slave/workspace/lassie/jenkins_build/code-coverage/report.json' | jq '.coverage'",
+          script: "cat '/Users/admin/.jenkins/workspace/lassie/jenkins_build/code-coverage/report.json' | jq '.coverage'",
           returnStdout: true
           )
     return coverage
