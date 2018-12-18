@@ -152,17 +152,17 @@ node() {
 
   def buildStarted() {
     // changePrStatus("pending", "In progress...")
-    updateStatus("pending", "InProgress...")
+    // updateStatus("pending", "InProgress...")
   }
 
   def buildSuccess() {
     // changePrStatus("success", "The build succeeded!")
-    updateStatus("success", "Build passed")
+    // updateStatus("success", "Build passed")
   }
 
   def buildError() {
     // changePrStatus("failure", "Build failed")
-    updateStatus("failure", "Build failed")
+    // updateStatus("failure", "Build failed")
   }
 
   def updateStatus(gitStatus, message) {
@@ -180,10 +180,8 @@ node() {
     if (currentBuild.result == 'SUCCESS') {
         buildSuccess()
         commentGithub("Coverage: "+ getCoverage())
-        // slackSend channel: '#mobile-monitor-ios', color: "#339c4a", message: "Build: ${env.JOB_NAME} ${env.branch} (#${env.BUILD_NUMBER}) finalizado com sucesso(<${env.BUILD_URL}|Open>)"
     } else {
         buildError()
-        // slackSend channel: '#mobile-monitor-ios', color: "#ff0000", message: "ended ${env.JOB_NAME} ${env.branch} (#${env.BUILD_NUMBER}) with failure (<${env.BUILD_URL}|Open>)"
     }
   }
 
