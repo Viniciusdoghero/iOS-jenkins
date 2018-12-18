@@ -152,7 +152,12 @@ node() {
   // }
 
   def updateStatus(gitStatus, message) {
-    sh "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: token ${env.GIT_TOKEN}\" ${env.statusUrl} -d \"{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_URL}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}\""
+    sh "curl -X POST -H 'Content-Type: application/json' " +
+            "-H 'Authorization: token ${env.GIT_TOKEN}' ${env.statusUrl} " +
+            "-d '{\"state\": \"${gitStatus}\",
+                  \"target_url\": \"${env.BUILD_UR}\",
+                  \"description\": \"${message}\",
+                  \"context\": \"CI/Jenkins\"}'"
   }
 
   def commentGithub(message) {
