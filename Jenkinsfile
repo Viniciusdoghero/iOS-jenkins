@@ -140,48 +140,39 @@ node() {
   //         ])
   //     }
   // }
-  // def commentGithub(commentMessage) {
-  //     if (env.commentUrl.length() > 0) {
-  //         gitComment([
-  //                 authToken : env.gitToken,
-  //                 commentUrl: env.commentUrl,
-  //                 message   : commentMessage
-  //         ])
-  //     }
-  // }
+
+  def commentGithub(commentMessage) {
+      if (env.commentUrl.length() > 0) {
+          gitComment([
+                  authToken : env.gitToken,
+                  commentUrl: env.commentUrl,
+                  message   : commentMessage
+          ])
+      }
+  }
 
   def buildStarted() {
     // changePrStatus("pending", "In progress...")
-    // updateStatus("pending", "InProgress...")
+    //updateStatus("pending", "InProgress...")
   }
 
   def buildSuccess() {
     // changePrStatus("success", "The build succeeded!")
-    // updateStatus("success", "Build passed")
   }
 
   def buildError() {
     // changePrStatus("failure", "Build failed")
-    // updateStatus("failure", "Build failed")
   }
-
-  // def updateStatus(gitStatus, message) {
-  //   sh "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139\" ${env.statusUrl} -d \"{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_URL}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}\""
-  // }
-  //
-  // def commentGithub(message) {
-  //     sh "curl -X POST -H 'Content-Type: application/json' " +
-  //             "-H 'Authorization: token 0407d5b5693b40bb39b8e0db51ac778111356139' ${env.commentUrl} " +
-  //             "-d '{\"body\": \"${message}\"}'"
-  // }
 
   def buildFinal() {
     echo currentBuild.result
     if (currentBuild.result == 'SUCCESS') {
         buildSuccess()
         commentGithub("Coverage: "+ getCoverage())
+        // slackSend channel: '#mobile-monitor-ios', color: "#339c4a", message: "Build: ${env.JOB_NAME} ${env.branch} (#${env.BUILD_NUMBER}) finalizado com sucesso(<${env.BUILD_URL}|Open>)"
     } else {
         buildError()
+        // slackSend channel: '#mobile-monitor-ios', color: "#ff0000", message: "ended ${env.JOB_NAME} ${env.branch} (#${env.BUILD_NUMBER}) with failure (<${env.BUILD_URL}|Open>)"
     }
   }
 
