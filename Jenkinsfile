@@ -154,7 +154,7 @@ node() {
   def updateStatus(gitStatus, message) {
     sh "curl -X POST -H 'Content-Type: application/json' " +
             "-H 'Authorization: token ${env.GIT_TOKEN}' ${env.statusUrl} " +
-            "-d '{\"state\": \"${gitStatus}\",\"target_url\": \"${env.BUILD_UR}\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}'"
+            "-d '{\"state\": \"${gitStatus}\",\"target_url\": \"https://6abc997e.ngrok.io/job/lassie\",\"description\": \"${message}\",\"context\": \"CI/Jenkins\"}'"
   }
 
   def commentGithub(message) {
