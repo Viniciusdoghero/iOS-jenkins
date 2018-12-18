@@ -96,7 +96,6 @@ node() {
       sh "security -v unlock-keychain -p admin-ci ${KEYCHAIN}"
       sh "security set-keychain-settings -t 3600 -l ${KEYCHAIN}"
 
-      sh "killall 'Simulator'"
       sh "xcrun simctl shutdown all"
       sh "xcrun simctl erase all"
   }
