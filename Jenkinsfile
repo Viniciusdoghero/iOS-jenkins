@@ -74,7 +74,7 @@ node() {
 
   def unitTests() {
     stage('UnitTests') {
-      sh 'fastlane ios lassie_run_tests --capture_output'
+      sh 'fastlane ios lassie_run_tests'
     }
   }
 
