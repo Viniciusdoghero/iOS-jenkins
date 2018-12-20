@@ -96,8 +96,8 @@ node() {
       sh "security -v unlock-keychain -p admin-ci ${KEYCHAIN}"
       sh "security set-keychain-settings -t 3600 -l ${KEYCHAIN}"
 
-      sh "xcrun simctl shutdown all"
-      sh "xcrun simctl erase all"
+      // sh "xcrun simctl shutdown all"
+      // sh "xcrun simctl erase all"
   }
 
   def cleanFolders() {
