@@ -50,6 +50,7 @@ node() {
     bundleInstall()
     checkout(lane, branch)
     cleanEnvironment()
+    cleanFolders()
     cocoapods()
     // checkStyle()
     unitTests()
@@ -61,15 +62,17 @@ node() {
 
   def cleanEnvironment() {
     stage('Prepare environment') {
-      parallel(
-        reset_simulators: {
-          prepareEnvironment()
-        },
-        clean_folders: {
-          cleanFolders()
-        }
-      )
+      prepareEnvironment()
     }
+    //   parallel(
+    //     reset_simulators: {
+    //
+    //     },
+    //     clean_folders: {
+    //
+    //     }
+    //   )
+    // }
   }
 
   def unitTests() {
