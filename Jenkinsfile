@@ -64,15 +64,6 @@ node() {
     stage('Prepare environment') {
       prepareEnvironment()
     }
-    //   parallel(
-    //     reset_simulators: {
-    //
-    //     },
-    //     clean_folders: {
-    //
-    //     }
-    //   )
-    // }
   }
 
   def unitTests() {
@@ -105,9 +96,11 @@ node() {
   }
 
   def cleanFolders() {
-      sh "rm -rf /Users/admin/.jenkins/workspace/lassie/jenkins_build/"
-      sh "rm -rf /Users/admin/.jenkins/workspace/lassie/output/"
-      sh "rm -rf /Users/admin/.jenkins/workspace/lassie/DerivedData/"
+    stage('Clean folders') {}
+        sh "rm -rf /Users/admin/.jenkins/workspace/lassie/jenkins_build/"
+        sh "rm -rf /Users/admin/.jenkins/workspace/lassie/output/"
+        sh "rm -rf /Users/admin/.jenkins/workspace/lassie/DerivedData/"
+    }
   }
 
   def checkout(lane, branch) {
