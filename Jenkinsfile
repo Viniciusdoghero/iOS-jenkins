@@ -96,7 +96,7 @@ node() {
   }
 
   def cleanFolders() {
-    stage('Clean folders') {}
+    stage('Clean folders') {
         sh "rm -rf /Users/admin/.jenkins/workspace/lassie/jenkins_build/"
         sh "rm -rf /Users/admin/.jenkins/workspace/lassie/output/"
         sh "rm -rf /Users/admin/.jenkins/workspace/lassie/DerivedData/"
