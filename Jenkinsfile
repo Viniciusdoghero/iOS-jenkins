@@ -46,6 +46,13 @@ node() {
     buildFinal()
   }
 
+  def deployBeta(branch) {
+    // runUnitTests("", branch)
+    stage('Building for Crashlytics Beta') {
+      sh 'fastlane ios beta --verbose'
+    }
+  }
+
   def runUnitTests(lane, branch) {
     bundleInstall()
     checkout(lane, branch)
@@ -68,8 +75,8 @@ node() {
 
   def unitTests() {
     stage('UnitTests') {
-      // sh 'fastlane ios beta'
-      sh 'fastlane ios lassie_run_tests --verbose'
+      sh 'fastlane ios beta --verbose'
+      // sh 'fastlane ios lassie_run_tests --verbose'
     }
   }
 
